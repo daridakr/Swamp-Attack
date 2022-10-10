@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     // Temporal.
     [SerializeField] private Hero _target;
 
+    public Hero Target => _target;
+
     public event UnityAction Died;
 
     public void TakeDamage(int damge)
