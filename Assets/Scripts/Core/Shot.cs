@@ -9,4 +9,14 @@ public class Shot : MonoBehaviour
     {
         transform.Translate(Vector2.left * _speed * Time.deltaTime, Space.World);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Enemy>(out var enemy))
+        {
+            enemy.TakeDamage(_damage);
+
+            Destroy(gameObject);
+        }
+    }
 }

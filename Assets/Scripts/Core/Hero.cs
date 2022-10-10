@@ -10,6 +10,7 @@ public class Hero : MonoBehaviour
 
     private Weapon _currentWeapon;
     private int _currentHealth;
+    private int _money;
     private Animator _animator;
 
     private void Awake()
@@ -29,5 +30,10 @@ public class Hero : MonoBehaviour
         {
             _currentWeapon.Shoot(_shotPoint);
         }
+    }
+
+    public void OnEnemyKilled(int reward)
+    {
+        _money += reward;
     }
 }
