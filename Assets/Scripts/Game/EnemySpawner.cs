@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
     private float _elapsedTime = 0;
-    private int _spawnedNumber;
+    private int _spawnedNumber = 0;
 
     private void Start()
     {
