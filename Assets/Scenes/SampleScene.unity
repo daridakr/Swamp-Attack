@@ -1286,7 +1286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &532246342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2038,6 +2038,15 @@ MonoBehaviour:
   - Prefab: {fileID: 5718639416331091704, guid: e9d47503796a94f479c1f4460e32134b, type: 3}
     Delay: 0.5
     Count: 10
+  - Prefab: {fileID: 664519950402173358, guid: 7c4a9ccfed84ec24f89d70679289fa3a, type: 3}
+    Delay: 1
+    Count: 5
+  - Prefab: {fileID: 664519950402173358, guid: 7c4a9ccfed84ec24f89d70679289fa3a, type: 3}
+    Delay: 0.8
+    Count: 10
+  - Prefab: {fileID: 7776819291851560750, guid: 41d2b56c2c0ef7f41aeaf845c3a5103b, type: 3}
+    Delay: 1
+    Count: 5
   _target: {fileID: 349021874}
 --- !u!1 &1225165501
 GameObject:
