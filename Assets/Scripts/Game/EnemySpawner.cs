@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Transform))]
 public class EnemySpawner : MonoBehaviour
@@ -10,8 +11,10 @@ public class EnemySpawner : MonoBehaviour
     private Transform _spawnPoint;
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
+    private int _spawnedNumberInWave = 0;
     private float _elapsedTime = 0;
-    private int _spawnedNumber = 0;
+    
+    public event UnityAction AllEnemyInWaveSpawned;
 
     private void Awake()
     {
@@ -35,12 +38,17 @@ public class EnemySpawner : MonoBehaviour
         if (_elapsedTime >= _currentWave.Delay)
         {
             InstantiateEnemy();
-            _spawnedNumber++;
+            _spawnedNumberInWave++;
             _elapsedTime = 0;
         }
 
-        if(_currentWave.Count <= _spawnedNumber)
+        if(_currentWave.Count <= _spawnedNumberInWave)
         {
+            if (_spawnWaves.Count > _currentWaveNumber + 1)
+            {
+                AllEnemyInWaveSpawned?.Invoke();
+            }
+
             _currentWave = null;
         }
     }
@@ -55,6 +63,12 @@ public class EnemySpawner : MonoBehaviour
     private void SetWave(int waveNumber)
     {
         _currentWave = _spawnWaves[waveNumber];
+    }
+
+    public void NextWave()
+    {
+        SetWave(++_currentWaveNumber);
+        _spawnedNumberInWave = 0;
     }
 
     private void OnEnemyDied(Enemy current)
