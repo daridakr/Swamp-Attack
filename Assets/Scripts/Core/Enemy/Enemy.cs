@@ -9,8 +9,9 @@ public class Enemy : MonoBehaviour
     private Hero _target;
 
     public Hero Target => _target;
+    public int Reward => _reward;
 
-    public event UnityAction Died;
+    public event UnityAction<Enemy> Died;
 
     public void Init(Hero target)
     {
@@ -30,6 +31,6 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        Died?.Invoke();
+        Died?.Invoke(this);
     }
 }

@@ -10,8 +10,9 @@ public class Hero : MonoBehaviour
 
     private Weapon _currentWeapon;
     private int _currentHealth;
-    private int _money;
     private Animator _animator;
+
+    public int Money { get; private set; }
 
     private void Awake()
     {
@@ -42,8 +43,8 @@ public class Hero : MonoBehaviour
         }
     }
 
-    private void OnEnemyKilled(int reward)
+    public void AddMoney(int money)
     {
-        _money += reward;
+        Money += money;
     }
 }
