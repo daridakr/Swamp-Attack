@@ -6,12 +6,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int _health;
     [SerializeField] private int _reward;
 
-    // Temporal.
-    [SerializeField] private Hero _target;
+    private Hero _target;
 
     public Hero Target => _target;
 
     public event UnityAction Died;
+
+    public void Init(Hero target)
+    {
+        _target = target;
+    }
 
     public void TakeDamage(int damge)
     {
