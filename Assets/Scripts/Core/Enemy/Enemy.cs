@@ -1,17 +1,24 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(RiseState))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private int _reward;
 
     private Hero _target;
+    private RiseState _rise;
 
     public Hero Target => _target;
     public int Reward => _reward;
 
     public event UnityAction<Enemy> Died;
+
+    private void Awake()
+    {
+        _rise = GetComponent<RiseState>();
+    }
 
     public void Init(Hero target)
     {
@@ -20,11 +27,14 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damge)
     {
-        _health -= damge;
-
-        if (_health <= 0)
+        if (!_rise.enabled)
         {
-            Die();
+            _health -= damge;
+
+            if (_health <= 0)
+            {
+                Die();
+            }
         }
     }
 
