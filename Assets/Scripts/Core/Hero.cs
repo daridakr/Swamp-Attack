@@ -51,4 +51,10 @@ public class Hero : MonoBehaviour
     {
         Money += money;
     }
+
+    public void BuyWeapon(Weapon weapon)
+    {
+        Money -= weapon.Price;
+        _weapons.Add(weapon);
+    }
 }
