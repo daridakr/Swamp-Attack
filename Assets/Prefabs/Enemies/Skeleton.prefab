@@ -123,8 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 5
-  _reward: 1
-  _target: {fileID: 0}
+  _reward: 2
 --- !u!61 &5718639416331091705
 BoxCollider2D:
   m_ObjectHideFlags: 0

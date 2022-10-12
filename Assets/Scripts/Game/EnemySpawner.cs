@@ -2,24 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Transform))]
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private List<Wave> _spawnWaves;
     [SerializeField] private Hero _target;
-
-    private Transform _spawnPoint;
+    [SerializeField] private List<Wave> _spawnWaves;
+    
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
     private int _spawnedNumberInWave = 0;
     private float _elapsedTime = 0;
     
     public event UnityAction AllEnemyInWaveSpawned;
-
-    private void Awake()
-    {
-        _spawnPoint = GetComponent<Transform>();
-    }
 
     private void Start()
     {
@@ -55,7 +48,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void InstantiateEnemy()
     {
-        Enemy enemy = Instantiate(_currentWave.Prefab, _spawnPoint.position, _spawnPoint.localRotation, _spawnPoint).GetComponent<Enemy>();
+        int spawnPointNumber = Random.Range(0, _currentWave.Points.Length);
+        Transform spawnPoint = _currentWave.Points[spawnPointNumber];
+
+        Enemy enemy = Instantiate(_currentWave.Prefab, spawnPoint.position, spawnPoint.localRotation, spawnPoint).GetComponent<Enemy>();
         enemy.Init(_target);
         enemy.Died += OnEnemyDied;
     }
@@ -83,6 +79,7 @@ public class EnemySpawner : MonoBehaviour
 public class Wave
 {
     public Enemy Prefab;
-    public float Delay;
+    public Transform[] Points;
     public int Count;
+    public float Delay;
 }
