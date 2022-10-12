@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 7199559629602044527}
-  _distance: 1.5
+  _distance: 2
   _rangeSpread: 0.5
 --- !u!114 &7199559629602044527
 MonoBehaviour:
